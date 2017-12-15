@@ -3,11 +3,17 @@ import { NgModule } from '@angular/core';
 
 
 import { AppComponent } from './app.component';
+import { ActiveChatComponent } from './active-chat/active-chat.component';
+import { MessageComponent } from './message/message.component';
+import { PostMessageComponent } from './post-message/post-message.component';
 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    ActiveChatComponent,
+    MessageComponent,
+    PostMessageComponent
   ],
   imports: [
     BrowserModule
