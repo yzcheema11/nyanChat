@@ -1,0 +1,25 @@
+.heading {
+  margin: auto -20px;
+}
+
+img {
+  width: 33.333333333vw;
+  height: auto;
+  position: relative;
+}
+
+h1 {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  padding-top: 1vw;
+  padding-right: 2vw;
+  font-size: 4vw;
+  color: white;
+  border-color: black;
+  text-shadow: 1px 0px 20px rgb(5, 200, 100);
+}
+
+.text-center {
+  position: relative;
+}

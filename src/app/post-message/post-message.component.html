@@ -1,3 +1,12 @@
-<p>
-  post-message works!
-</p>
+<div class="row">
+  <div class="div col-1">
+    <button type="button" class="btn btn-default"><i class="fa fa-upload" aria-hidden="true"></i></button>
+
+  </div>
+  <div class="col-9">
+    <input id="str" class="form-control" placeholder="Type message here" [(ngModel)]="str" (keyup.enter)="logMsg()">
+  </div>
+  <div class="col-2">
+    <input class="btn btn-primary" type="submit" value="Send" (click)="logMsg()">
+  </div>
+</div>

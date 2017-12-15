@@ -1,10 +1,19 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { ActiveChatComponent } from './active-chat/active-chat.component';
+import { MessageComponent } from './message/message.component';
+import { PostMessageComponent } from './post-message/post-message.component';
+import { HeadingImageComponent } from './heading-image/heading-image.component';
+
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        ActiveChatComponent,
+        MessageComponent,
+        PostMessageComponent,
+        HeadingImageComponent
       ],
     }).compileComponents();
   }));

@@ -1,0 +1,35 @@
+.background {
+  background-color: rgb(2, 41, 84);
+  width: 100%;
+  height: 100%;
+}
+
+.main {
+  height:90vh;
+}
+
+h2 {
+  color: white;
+  border-color: black;
+  text-shadow: 1px 0px 20px rgb(146, 164, 229);
+  font-size: 3vw;
+}
+
+.messages {
+  background-color: rgba(252, 234, 204, 0.5);
+  padding: 5% 2%;
+  height: 70%;
+  color: white;
+  text-shadow: 1px 0px 20px blue;
+  overflow: scroll;
+  border-radius: 10px;
+  box-shadow: -5px 0px 12px black;
+}
+
+.post-message {
+  background: repeating-radial-gradient(red, orange, yellow, green, blue, purple, red, orange, yellow, green, blue, purple);
+  padding: 5% 2%;
+  height: 30%;
+  border-radius: 10px;
+  box-shadow: -5px 0px 12px black;
+}
