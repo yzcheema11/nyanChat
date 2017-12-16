@@ -1,6 +1,9 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+///<reference path="../services/messages.service.ts"/>
+import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import { MessageComponent } from './message.component';
+import {MessageComponent} from './message.component';
+import {MessagesService} from '../services/messages.service';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('MessageComponent', () => {
   let component: MessageComponent;
@@ -8,9 +11,11 @@ describe('MessageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ MessageComponent ]
+      declarations: [MessageComponent],
+      providers: [MessagesService],
+      imports: [FormsModule, ReactiveFormsModule],
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
