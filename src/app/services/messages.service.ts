@@ -8,7 +8,7 @@ export class MessagesService {
 
 
   messages: Message[] = [];
-  messageSource= new BehaviorSubject<Message>(new Message({userName: 'Admin', body: 'Welcome to NotSlack'}));
+  messageSource= new BehaviorSubject<Message>(new Message({userName: 'Admin', body: 'Welcome to NyanChat'}));
   currentMessage= this.messageSource.asObservable();
   constructor() {
   }

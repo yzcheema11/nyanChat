@@ -32,7 +32,7 @@ describe('ActiveChatComponent', () => {
 
   describe('onInIt subscribes to new Messages', () => {
     it('should start with a welcome message', inject([MessagesService], (service: MessagesService) => {
-      let message1 = new Message({userName: 'Admin', body: 'Welcome to NotSlack'});
+      let message1 = new Message({userName: 'Admin', body: 'Welcome to NyanChat'});
       let subscription: Message;
       service.currentMessage.subscribe(message => subscription = message);
       expect(subscription).toEqual(message1);
