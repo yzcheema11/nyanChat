@@ -16,6 +16,8 @@ export class MessageComponent implements OnInit {
 
   @Input() newMsg: string;
 
+  collapsed: boolean = true;
+
   delete() {
 
     this.del.emit(this.id);
@@ -39,13 +41,15 @@ export class MessageComponent implements OnInit {
 
   toggleOptionsMenu() {
 
-    let ele = document.getElementById('optionmenu');
-    if (ele.style.display === 'block') {
-      ele.style.display = 'none';
-    }
-    else {
-      ele.style.display = 'block';
-    }
+    this.collapsed = !this.collapsed;
+
+    // let ele = document.getElementById('optionmenu');
+    // if (ele.style.display === 'block') {
+    //   ele.style.display = 'none';
+    // }
+    // else {
+    //   ele.style.display = 'block';
+    // }
   }
 
   ngOnInit() {
