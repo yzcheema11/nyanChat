@@ -1,10 +1,12 @@
 
 div #optionmenu {
-  display: none;
+  display: block;
 }
 
 #option_ellipsis {
-  float: right;
+  /*position: relative;*/
+  float: outside;
+  top: 1vh;
   margin-left: 98%;
 
 }

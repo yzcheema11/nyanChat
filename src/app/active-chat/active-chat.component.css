@@ -1,10 +1,15 @@
 
 #chatArea {
+  margin-top: .5em;
   padding: 1em;
   background: lightgray;
   width: max-content;
   border-radius: .5em;
   box-shadow: 2px 2px 12px black;
+}
+
+#chatArea:hover {
+
 }
 
 

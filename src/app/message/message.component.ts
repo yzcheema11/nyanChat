@@ -37,7 +37,8 @@ export class MessageComponent implements OnInit {
 
   }
 
-  toggleOptionsMenu(event: any) {
+  toggleOptionsMenu() {
+
     let ele = document.getElementById('optionmenu');
     if (ele.style.display === 'block') {
       ele.style.display = 'none';

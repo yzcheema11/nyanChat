@@ -36,9 +36,9 @@ export class ActiveChatComponent implements OnInit {
 
   ngOnInit() {
     this.messagesService.currentMessage.subscribe(message => this.display(message));
-    //this.getPosts.subscribe(next => this.chatMessages = next);
+    // this.getPosts.subscribe(next => this.chatMessages = next);
     this.getPosts.subscribe(next => {
-      for (let x in next) {
+      for (const x in next) {
         this.chatMessages.push(new Message(next[x]));
         console.log(next[x]);
       }
