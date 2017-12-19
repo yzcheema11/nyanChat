@@ -27,7 +27,7 @@ export class MessageComponent implements OnInit {
   }
 
   editMsg() {
-    this.messagesService.updateMessageById(this.id, {body: this.newMsg});
+    this.messagesService.updateMessageById(this.id, {content: this.newMsg});
     for (const m in this.messagesService.getAllMessages()) {
       console.log(this.messagesService.getAllMessages()[m] + ' all msgs');
     }
