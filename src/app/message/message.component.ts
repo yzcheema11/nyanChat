@@ -1,7 +1,6 @@
 import {Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
 import {MessagesService} from '../services/messages.service';
-import {element} from 'protractor';
-import {elementAt} from 'rxjs/operator/elementAt';
+
 
 @Component({
   selector: 'app-message',
