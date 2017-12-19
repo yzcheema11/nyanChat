@@ -1,6 +1,8 @@
 
 div #optionmenu {
   display: block;
+  /*background: whitesmoke;*/
+  /*padding: 2px;*/
 }
 
 #option_ellipsis {
