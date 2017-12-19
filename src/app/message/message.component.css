@@ -1,12 +1,12 @@
 
 div #optionmenu {
   display: none;
-  background: white;
 }
 
 #option_ellipsis {
-  margin-left: 2%;
+  float: right;
   margin-left: 98%;
+
 }
 
 #option_ellipsis:hover {
