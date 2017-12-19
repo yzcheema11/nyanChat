@@ -60,18 +60,19 @@ export class Message {
   // private _userName: string;
 
 
-    postId: number;
-    content: string;
-    threadId:number;
-    userId:number;
-    timeStamp:string=new Date().toLocaleDateString();
-    editedTime:string;
-    userName:string;
-  constructor(values: Object= {}) {
+  postId: number;
+  userId: number;
+  threadId: number;
+  timestamp: string;// = new Date().toLocaleDateString();
+  content: string;
+  editedTime:string;
+  userName:string;
+
+  constructor(values: Object = {}) {
     Object.assign(this, values);
   }
 
   toString(): string {
-    return this.userName +' '+ this.timeStamp+': ' + this.content;
+    return this.postId + ' ' + this.timestamp + ': ' + this.content;
   }
 }

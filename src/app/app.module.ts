@@ -20,7 +20,6 @@ import {HttpClientModule} from '@angular/common/http';
     PostMessageComponent,
     HeadingImageComponent,
     SidebarComponent
-
   ],
   imports: [
     BrowserModule,
@@ -30,5 +29,6 @@ import {HttpClientModule} from '@angular/common/http';
   ],
   providers: [MessagesService],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
