@@ -2,7 +2,8 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessagesService} from '../services/messages.service';
 import {Message} from '../message.model';
 import {MessageComponent} from '../message/message.component';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {API_URL} from "../../environments/environment";
 
 
 @Component({
@@ -15,8 +16,8 @@ export class ActiveChatComponent implements OnInit {
 
   @ViewChild(MessageComponent) child;
 
-  private postsUrl = 'https://nameless-peak-71330.herokuapp.com/posts';
-  chatMessages: Message[]= [];
+  private postsUrl = API_URL + '/posts';
+  chatMessages: Message[] = [];
 
   mesgId: number;
   getPosts = this.http.get<Message[]>(this.postsUrl);
@@ -31,17 +32,23 @@ export class ActiveChatComponent implements OnInit {
     console.log(id);
     this.chatMessages = this.chatMessages.filter(message => message.postId !== id);
   }
-  constructor(private messagesService: MessagesService, private http: HttpClient) { }
+
+  constructor(private messagesService: MessagesService, private http: HttpClient) {
+  }
 
   ngOnInit() {
     this.messagesService.currentMessage.subscribe(message => this.display(message));
-    //this.getPosts.subscribe(next => this.chatMessages = next);
-    this.getPosts.subscribe(next => {
-      for (let x in next) {
-        this.chatMessages.push(new Message(next[x]));
-        console.log(next[x]);
-      }
-    });
+
+    setInterval(() => {
+      this.getPosts.subscribe(next => {
+        const tempMessages: Message[] = [];
+        for (let x in next) {
+          tempMessages.push(new Message(next[x]));
+          console.log(next[x]);
+        }
+        this.chatMessages = tempMessages;
+      });
+    }, 500);
   }
 
 }

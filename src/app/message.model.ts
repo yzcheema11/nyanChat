@@ -67,9 +67,9 @@ export class Message {
   content: string;
   editedTime:string;
   userName:string;
+
   constructor(values: Object = {}) {
     Object.assign(this, values);
-    console.log(this);
   }
 
   toString(): string {

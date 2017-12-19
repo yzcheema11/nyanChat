@@ -4,17 +4,18 @@ import {BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {catchError, map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
+import {API_URL} from "../../environments/environment";
 
 @Injectable()
 export class MessagesService {
   lastId= 0;
 
-  private postsUrl = 'https://nameless-peak-71330.herokuapp.com/posts';
+  private postsUrl = API_URL+'/posts';
 
   httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
   messages: Message[] = [];
-  messageSource= new BehaviorSubject<Message>(new Message({userName: 'Admin', body: 'Welcome to NyanChat'}));
+  messageSource= new BehaviorSubject<Message>(new Message({postId: 0, timestamp: 'Admin Message', content: 'Welcome to NyanChat'}));
   currentMessage= this.messageSource.asObservable();
 
 
@@ -27,18 +28,15 @@ export class MessagesService {
     }
     this.messages.push(message);
     console.log('msg srv: ' + message.content);
-    let mess;
-    //this.getPosts.subscribe(message1 => console.log(mess = message1));
 
     this.messageSource.next(message);
 
-    this.http.post<string>(this.postsUrl, message, this.httpOptions);
+    this.http.post(this.postsUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
 
     return this;
   }
 
   getAllMessages() {
-    //this.messages = this.http.get<Message[]>(this.postsUrl, this.httpOptions);
     return this.messages;
   }
 
