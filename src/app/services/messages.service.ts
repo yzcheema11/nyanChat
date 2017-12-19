@@ -1,6 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Message } from '../message.model';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/';
+import { Http, Response, Headers, RequestOptions } from '@angular/http';
+// import { map } from 'rxjs/operators';
+import 'rxjs/add/operator/map';
 
 @Injectable()
 export class MessagesService {
@@ -10,7 +14,7 @@ export class MessagesService {
   messages: Message[] = [];
   messageSource= new BehaviorSubject<Message>(new Message({userName: 'Admin', body: 'Welcome to NyanChat'}));
   currentMessage= this.messageSource.asObservable();
-  constructor() {
+  constructor(private http: Http) {
   }
 
   postMessage(message: Message): MessagesService {
@@ -23,8 +27,12 @@ export class MessagesService {
     return this;
   }
 
-  getAllMessages() {
-    return this.messages;
+  // getAllMessages() {
+  //   return this.messages;
+  // }
+
+  getAllMessages() : Observable<Message[]> {
+    return this.http.get('http://localhost:4200/api/posts').map((res:Response) => res.json());
   }
 
   getMessagesById(id: number): Message {
