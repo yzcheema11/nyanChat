@@ -27,6 +27,9 @@ export class ActiveChatComponent implements OnInit {
     console.log(id);
     this.chatMessages = this.chatMessages.filter(message => message.id !== id);
   }
+
+
+
   constructor(private messagesService: MessagesService) { }
 
   ngOnInit() {

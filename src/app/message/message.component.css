@@ -1,0 +1,14 @@
+
+div #optionmenu {
+  display: none;
+  background: white;
+}
+
+#option_ellipsis {
+  margin-left: 2%;
+  margin-left: 98%;
+}
+
+#option_ellipsis:hover {
+  text-shadow: 0 0 10px whitesmoke ;
+}

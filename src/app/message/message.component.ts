@@ -1,5 +1,6 @@
-import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
-import { MessagesService} from '../services/messages.service';
+import {Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
+import {MessagesService} from '../services/messages.service';
+import {element} from 'protractor';
 
 @Component({
   selector: 'app-message',
@@ -35,6 +36,16 @@ export class MessageComponent implements OnInit {
 
   }
 
+  toggleOptionsMenu() {
+    let ele = document.getElementById('');
+    console.log(ele);
+    if (ele.style.display === 'block') {
+      ele.style.display = 'none';
+    }
+    else {
+      ele.style.display = 'block';
+    }
+  }
 
   ngOnInit() {
   }

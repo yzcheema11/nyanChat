@@ -1,5 +1,9 @@
-<p>
-  <input type="text" id="str" [(ngModel)] ="newMsg"/>
-  <button (click)="editMsg()">Edit Msg</button><
-  <button (click)="delete()">Delete</button>
-</p>
+<div>
+  <i id="option_ellipsis" (click)="toggleOptionsMenu()" class="fa fa-ellipsis-v" aria-hidden="true" ></i>
+  <div id="optionmenu">
+    <input type="text" id="str" [(ngModel)]="newMsg"/>
+    <button (click)="editMsg()">Edit Msg</button>
+    <button (click)="delete()">Delete</button>
+  </div>
+
+</div>
