@@ -1,5 +1,7 @@
-import { Component, EventEmitter, Output, Input, OnInit } from '@angular/core';
-import { MessagesService} from '../services/messages.service';
+import {Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
+import {MessagesService} from '../services/messages.service';
+import {element} from 'protractor';
+import {elementAt} from 'rxjs/operator/elementAt';
 
 @Component({
   selector: 'app-message',
@@ -25,7 +27,7 @@ export class MessageComponent implements OnInit {
   }
 
   editMsg() {
-    this.messagesService.updateMessageById(this.id, {body: this.newMsg});
+    this.messagesService.updateMessageById(this.id, {content: this.newMsg});
     for (const m in this.messagesService.getAllMessages()) {
       console.log(this.messagesService.getAllMessages()[m] + ' all msgs');
     }
@@ -35,6 +37,16 @@ export class MessageComponent implements OnInit {
 
   }
 
+  toggleOptionsMenu() {
+
+    let ele = document.getElementById('optionmenu');
+    if (ele.style.display === 'block') {
+      ele.style.display = 'none';
+    }
+    else {
+      ele.style.display = 'block';
+    }
+  }
 
   ngOnInit() {
   }

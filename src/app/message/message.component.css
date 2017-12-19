@@ -1,0 +1,16 @@
+
+div #optionmenu {
+  display: block;
+}
+
+#option_ellipsis {
+  /*position: relative;*/
+  float: outside;
+  top: 1vh;
+  margin-left: 98%;
+
+}
+
+#option_ellipsis:hover {
+  text-shadow: 0 0 10px whitesmoke ;
+}

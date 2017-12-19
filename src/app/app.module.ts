@@ -10,6 +10,7 @@ import { PostMessageComponent } from './post-message/post-message.component';
 import { HeadingImageComponent} from './heading-image/heading-image.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MessagesService} from './services/messages.service';
+import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,14 +20,15 @@ import { MessagesService} from './services/messages.service';
     PostMessageComponent,
     HeadingImageComponent,
     SidebarComponent
-
   ],
   imports: [
     BrowserModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [MessagesService],
   bootstrap: [AppComponent]
+
 })
 export class AppModule { }
