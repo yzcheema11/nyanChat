@@ -9,14 +9,15 @@ import {Observable} from 'rxjs/Observable';
 export class MessagesService {
   lastId= 0;
 
-  private postsUrl = '/posts';
+  private postsUrl = 'https://nameless-peak-71330.herokuapp.com/posts';
 
-    httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+  httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
-    messages: Message[] = [];
+  messages: Message[] = [];
   messageSource= new BehaviorSubject<Message>(new Message({userName: 'Admin', body: 'Welcome to NyanChat'}));
   currentMessage= this.messageSource.asObservable();
-  getPosts = this.http.get<String[]>(this.postsUrl);
+
+
   constructor(private http: HttpClient ) {
   }
 
@@ -27,7 +28,7 @@ export class MessagesService {
     this.messages.push(message);
     console.log('msg srv: ' + message.content);
     let mess;
-    this.getPosts.subscribe(message1 => console.log(mess = message1));
+    //this.getPosts.subscribe(message1 => console.log(mess = message1));
 
     this.messageSource.next(message);
 
@@ -37,6 +38,7 @@ export class MessagesService {
   }
 
   getAllMessages() {
+    //this.messages = this.http.get<Message[]>(this.postsUrl, this.httpOptions);
     return this.messages;
   }
 
