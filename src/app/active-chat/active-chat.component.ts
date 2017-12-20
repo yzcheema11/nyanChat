@@ -49,6 +49,6 @@ export class ActiveChatComponent implements OnInit {
     //   });
     // }, 5000);
       this.chatMessages = this.messagesService.getAllMessages();
-    }, 500);
+    }, 5000);
   }
 }

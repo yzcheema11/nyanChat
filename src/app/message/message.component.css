@@ -17,11 +17,12 @@ div #optionmenu {
 
 #heading {
   border-bottom: 2px inset grey;
-  width: 102%;
+  width: 101%;
 }
 
 #option_ellipsis {
   display: inline;
+  margin-right: 0.5em;
   position: relative;
   float: right;
   top: 0.75vh;
@@ -33,10 +34,10 @@ div #optionmenu {
 
 
 #messagebubble {
-  margin-top: .5em;
+  margin-top: 2%;
   padding: 0.2em 1em 0.2em 0.5em;
   background: lightgray;
-  width: max-content;
+  width: 95%;
   border-radius: .5em;
   box-shadow: 2px 2px 12px black;
 }
