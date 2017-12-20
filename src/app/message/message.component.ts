@@ -15,7 +15,7 @@ export class MessageComponent implements OnInit {
 
   @Input() newMsg: string;
 
-  collapsed: boolean = true;
+  collapsed: boolean = false;
 
   delete() {
 

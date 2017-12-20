@@ -1,25 +1,29 @@
-import { Injectable } from '@angular/core';
-import { Message } from '../message.model';
-import {BehaviorSubject } from 'rxjs/BehaviorSubject';
+import {Injectable} from '@angular/core';
+import {Message} from '../message.model';
+import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {catchError, map, tap} from 'rxjs/operators';
-import {HttpClient, HttpHeaders } from '@angular/common/http';
+import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
 import {API_URL} from "../../environments/environment";
 
 @Injectable()
 export class MessagesService {
-  lastId= 0;
+  lastId = 0;
 
-  private postsUrl = API_URL+'/posts';
+  private postsUrl = API_URL + '/posts';
 
-  httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+  httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
   messages: Message[] = [];
-  messageSource= new BehaviorSubject<Message>(new Message({postId: 0, timestamp: 'Admin Message', content: 'Welcome to NyanChat'}));
-  currentMessage= this.messageSource.asObservable();
+  messageSource = new BehaviorSubject<Message>(new Message({
+    postId: 0,
+    timestamp: 'Admin Message',
+    content: 'Welcome to NyanChat'
+  }));
+  currentMessage = this.messageSource.asObservable();
 
 
-  constructor(private http: HttpClient ) {
+  constructor(private http: HttpClient) {
   }
 
   postMessage(message: Message): MessagesService {
@@ -37,6 +41,15 @@ export class MessagesService {
   }
 
   getAllMessages() {
+    const getPosts = this.http.get<Message[]>(this.postsUrl);
+    getPosts.subscribe(next => {
+      const tempMessages: Message[] = [];
+      for (const x in next) {
+        tempMessages.push(new Message(next[x]));
+        console.log(next[x]);
+      }
+      this.messages = tempMessages;
+    });
     return this.messages;
   }
 

@@ -73,6 +73,6 @@ export class Message {
   }
 
   toString(): string {
-    return this.postId + ' ' + this.timestamp + ': ' + this.content;
+    return this.userName + ' ' + this.timestamp + ': ' + this.content;
   }
 }
