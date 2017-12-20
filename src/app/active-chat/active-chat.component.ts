@@ -3,7 +3,7 @@ import {MessagesService} from '../services/messages.service';
 import {Message} from '../message.model';
 import {MessageComponent} from '../message/message.component';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {API_URL} from "../../environments/environment";
+import {API_URL} from '../../environments/environment';
 
 
 @Component({
@@ -48,7 +48,7 @@ export class ActiveChatComponent implements OnInit {
         }
         this.chatMessages = tempMessages;
       });
-    }, 500);
+    }, 5000);
   }
 
 }

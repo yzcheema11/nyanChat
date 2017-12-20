@@ -1,18 +1,45 @@
 
+h6 {
+  display: inline;
+  font-size: .75em;
+  font-style: oblique;
+  float: top;
+}
+
+p {
+  display: block;
+  margin-top: 1em;
+}
+
 div #optionmenu {
   display: block;
-  /*background: whitesmoke;*/
-  /*padding: 2px;*/
+}
+
+#heading {
+  border-bottom: 2px inset grey;
 }
 
 #option_ellipsis {
+  display: inline;
   position: relative;
-  float: top;
-  top: 1vh;
-  margin-left: 98%;
-
+  float: right;
+  top: 0.75vh;
+  /*right: 0.5vw;*/
+  /*margin-left: 98%;*/
 }
 
 #option_ellipsis:hover {
   text-shadow: 0 0 10px whitesmoke ;
 }
+
+
+#messagebubble {
+  margin-top: .5em;
+  padding: 0.2em 1em 0.2em 0.5em;
+  background: lightgray;
+  width: max-content;
+  border-radius: .5em;
+  box-shadow: 2px 2px 12px black;
+}
+
+
