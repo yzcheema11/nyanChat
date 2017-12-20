@@ -27,7 +27,7 @@ export class MessagesService {
 
   postMessage(message: Message): MessagesService {
     this.messages.push(message);
-    this.messageSource.next(message);
+//    this.messageSource.next(message);
     this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
     return this;
   }
