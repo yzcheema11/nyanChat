@@ -1,29 +1,27 @@
 import {TestBed, inject} from '@angular/core/testing';
 import {Message} from '../models/message.model';
-import {MessagesService} from './message.service';
-import {HttpClientModule} from '@angular/common/http';
+import {MessageService} from './message.service';
 
-describe('MessagesService', () => {
+describe('MessageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [MessagesService],
-      imports: [HttpClientModule]
+      providers: [MessageService]
     });
   });
 
-  it('should be created', inject([MessagesService], (service: MessagesService) => {
+  it('should be created', inject([MessageService], (service: MessageService) => {
     expect(service).toBeTruthy();
   }));
 
   describe('updateBehaviorSubject', () => {
-    it('should update currentMessage', inject([MessagesService], (service: MessagesService) => {
+    it('should update currentMessage', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({
         userName: 'mario',
-        content: 'its a me'
+        body: 'its a me'
       });
       const message2 = new Message({
         userName: 'luigi',
-        content: 'luigi?'
+        body: 'luigi?'
       });
       service.postMessage(message1);
       service.postMessage(message2);
@@ -31,35 +29,35 @@ describe('MessagesService', () => {
     }));
   });
   describe('getAllMessages()', () => {
-    it('should return empty array', inject([MessagesService], (service: MessagesService) => {
+    it('should return empty array', inject([MessageService], (service: MessageService) => {
       expect(service.getAllMessages()).toEqual([]);
     }));
-    it('should return an empty array by default', inject([MessagesService], (service: MessagesService) => {
+    it('should return an empty array by default', inject([MessageService], (service: MessageService) => {
       expect(service.getAllMessages()).toEqual([]);
     }));
 
-    it('should return all messages', inject([MessagesService], (service: MessagesService) => {
+    it('should return all messages', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({
         userName: 'mario',
-        content: 'its a me'
+        body: 'its a me'
       });
       const message2 = new Message({
         userName: 'luigi',
-        content: 'luigi?'
+        body: 'luigi?'
       });
       service.postMessage(message1);
       service.postMessage(message2);
       expect(service.getAllMessages()).toEqual([message1, message2]);
     }));
 
-    it('should get message by username', inject([MessagesService], (service: MessagesService) => {
+    it('should get message by username', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({
         userName: 'DK',
-        content: 'yummy bananas'
+        body: 'yummy bananas'
       });
       const message2 = new Message({
         userName: 'diddy',
-        content: 'mellow yellow bananas'
+        body: 'mellow yellow bananas'
       });
       service.postMessage(message1);
       service.postMessage(message2);
@@ -70,31 +68,31 @@ describe('MessagesService', () => {
 
   describe('#postMessage', () => {
 
-    it('should automatically add id', inject([MessagesService], (service: MessagesService) => {
+    it('should automatically add id', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({
         userName: 'DK',
-        content: 'yummy bananas'
+        body: 'yummy bananas'
       });
       const message2 = new Message({
         userName: 'diddy',
-        content: 'mellow yellow bananas'
+        body: 'mellow yellow bananas'
       });
       service.postMessage(message1);
       service.postMessage(message2);
-      expect(service.getMessageById(1)).toEqual(message1);
-      expect(service.getMessageById(2)).toEqual(message2);
+      expect(service.getMessagesById(1)).toEqual(message1);
+      expect(service.getMessagesById(2)).toEqual(message2);
     }));
   });
 
   describe('#delete', () => {
-    it('should remove message by id', inject([MessagesService], (service: MessagesService) => {
+    it('should remove message by id', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({
         userName: 'toad',
-        content: 'the princess is in another castle'
+        body: 'the princess is in another castle'
       });
       const message2 = new Message({
         userName: 'mario',
-        content: 'i hate you'
+        body: 'i hate you'
       });
       service.postMessage(message1);
       service.postMessage(message2);
@@ -105,14 +103,14 @@ describe('MessagesService', () => {
       expect(service.getAllMessages()).toEqual([]);
     }));
 
-    it('should remove nothing if no id found', inject([MessagesService], (service: MessagesService) => {
+    it('should remove nothing if no id found', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({
         userName: 'bowser',
-        content: 'bwahahaha'
+        body: 'bwahahaha'
       });
       const message2 = new Message({
         userName: 'luigi',
-        content: 'oh noooo'
+        body: 'oh noooo'
       });
       service.postMessage(message1);
       service.postMessage(message2);
@@ -123,23 +121,23 @@ describe('MessagesService', () => {
   });
 
   describe('#updateMessage', () => {
-    it('should update the message', inject([MessagesService], (service: MessagesService) => {
+    it('should update the message', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({
         userName: 'mario',
-        content: 'its a me'
+        body: 'its a me'
       });
       service.postMessage(message1);
-      service.updateMessageById(1, {content: 'pasta, pasta, pasta'});
-      expect(message1.content).toEqual('pasta, pasta, pasta');
+      service.updateMessageById(1, {body: 'pasta, pasta, pasta'});
+      expect(message1.body).toEqual('pasta, pasta, pasta');
     }));
 
-    it('should return null if no id found', inject([MessagesService], (service: MessagesService) => {
+    it('should return null if no id found', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({
         userName: 'mario',
-        content: 'its a me'
+        body: 'its a me'
       });
       service.postMessage(message1);
-      const updated: Message = service.updateMessageById(2, {content: 'where\'s the message?'});
+      const updated: Message = service.updateMessageById(2, {body: 'where\'s the message?'});
       expect(updated).toEqual(null);
     }));
   });

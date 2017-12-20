@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import { MessagesService } from '../services/message.service';
+import { MessageService } from '../services/message.service';
 import { Message } from '../models/message.model';
 
 @Component({
@@ -14,13 +14,14 @@ export class PostMessageComponent implements OnInit {
   @Input()
   logMsg() {
     if(this.str.length > 0) {
+
       const temp = new Message({userName: 'Enter a Name in Model', content: this.str});
       this.messagesService.postMessage(temp);
       this.str = '';
     }
   }
 
-  constructor(private messagesService: MessagesService) {}
+  constructor(private messageService: MessageService) {}
 
 
   ngOnInit() {
