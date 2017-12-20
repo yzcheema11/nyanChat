@@ -1,8 +1,8 @@
-///<reference path="../services/messages.service.ts"/>
+///<reference path="../services/message.service.ts"/>
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PostMessageComponent} from './post-message.component';
-import {MessagesService} from '../services/messages.service';
+import {MessageService} from '../services/message.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('PostMessageComponent', () => {
@@ -12,7 +12,7 @@ describe('PostMessageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PostMessageComponent],
-      providers: [MessagesService],
+      providers: [MessageService],
       imports: [FormsModule, ReactiveFormsModule],
     })
       .compileComponents();
