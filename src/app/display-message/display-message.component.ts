@@ -1,5 +1,6 @@
 import {Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
 import {MessageService} from '../services/message.service';
+import {Message} from '../models/message.model';
 
 
 @Component({
@@ -14,6 +15,8 @@ export class DisplayMessageComponent implements OnInit {
   @Input() id: number;
 
   @Input() newMsg: string;
+
+  @Input() incomingMessage: Message;
 
   collapsed: boolean = false;
 

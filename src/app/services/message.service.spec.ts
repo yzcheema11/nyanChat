@@ -1,12 +1,21 @@
 import {TestBed, inject} from '@angular/core/testing';
 import {Message} from '../models/message.model';
 import {MessageService} from './message.service';
+import {HttpClientTestingModule, HttpTestingController} from '@angular/common/http/testing';
+import {HttpClient} from '@angular/common/http';
 
-describe('MessageService', () => {
+let messageService;
+let httpMock;
+
+describe
+('MessageService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
       providers: [MessageService]
     });
+    messageService = TestBed.get(MessageService);
+    httpMock = TestBed.get(HttpTestingController);
   });
 
   it('should be created', inject([MessageService], (service: MessageService) => {
@@ -142,4 +151,7 @@ describe('MessageService', () => {
       }));
     });
   });
-}
+
+   // exampleMessageJson: string = "{\"messageId\": -100, \"userId\": -100, \"threadId\": -100, \"timestamp\": \"TimeyWimey\"}";
+
+});

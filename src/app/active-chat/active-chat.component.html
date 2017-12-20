@@ -2,9 +2,7 @@ Placeholder github logo
 <i class="fa fa-github" aria-hidden="true"></i>
 
 <div *ngFor="let message of chatMessages" id="chatArea" >
-
-  {{message.toString()}}
-  <app-display-message [id]="message.messageId" (del)="onDelete($event)"></app-display-message>
+  <app-display-message [incomingMessage]="message" [id]="message.messageId" (del)="onDelete($event)"></app-display-message>
 
   <div id="bottom"></div>
 </div>
