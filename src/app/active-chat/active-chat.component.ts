@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import { Component, OnInit, ViewChild} from '@angular/core';
 import {MessagesService} from '../services/messages.service';
 import {Message} from '../message.model';
 import {MessageComponent} from '../message/message.component';

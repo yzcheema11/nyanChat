@@ -1,9 +1,10 @@
-Placeholder github logo
-<i class="fa fa-github" aria-hidden="true"></i>
+<div>
+  Placeholder github logo
+  <i class="fa fa-github" aria-hidden="true"></i>
 
-<div *ngFor="let message of chatMessages" id="chatArea" >
+  <div *ngFor="let message of chatMessages" id="chatArea"  >
+    <app-message [message]="message" (del)="onDelete($event)"></app-message>
 
-
-  <app-message [message]="message" (del)="onDelete($event)"></app-message>
-
+  </div>
 </div>
+
