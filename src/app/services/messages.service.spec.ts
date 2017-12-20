@@ -1,5 +1,5 @@
 import {TestBed, inject} from '@angular/core/testing';
-import {Message} from '../message.model';
+import {Message} from '../models/message.model';
 import {MessagesService} from './messages.service';
 
 describe('MessagesService', () => {
@@ -128,7 +128,7 @@ describe('MessagesService', () => {
       });
       service.postMessage(message1);
       service.updateMessageById(1, {body: 'pasta, pasta, pasta'});
-      expect(message1.body).toEqual('pasta, pasta, pasta');
+      expect(message1.content).toEqual('pasta, pasta, pasta');
     }));
 
     it('should return null if no id found', inject([MessagesService], (service: MessagesService) => {
