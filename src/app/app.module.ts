@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpModule} from '@angular/http';
 
 
 import { AppComponent } from './app.component';
@@ -11,6 +12,8 @@ import { HeadingImageComponent} from './heading-image/heading-image.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MessagesService} from './services/messages.service';
 import {HttpClientModule} from '@angular/common/http';
+import { UsersComponent } from './users/users.component';
+import { LoginComponent } from './login/login.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +22,9 @@ import {HttpClientModule} from '@angular/common/http';
     MessageComponent,
     PostMessageComponent,
     HeadingImageComponent,
-    SidebarComponent
+    SidebarComponent,
+    UsersComponent,
+    LoginComponent
   ],
   imports: [
     BrowserModule,
