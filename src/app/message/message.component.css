@@ -24,8 +24,6 @@ div #optionmenu {
   position: relative;
   float: right;
   top: 0.75vh;
-  /*right: 0.5vw;*/
-  /*margin-left: 98%;*/
 }
 
 #option_ellipsis:hover {

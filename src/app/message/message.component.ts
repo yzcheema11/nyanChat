@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
 import {MessagesService} from '../services/messages.service';
-import {Message} from '../message.model';
+import {Message} from '../models/message.model';
 
 @Component({
   selector: 'app-message',
@@ -15,20 +15,19 @@ export class MessageComponent implements OnInit {
 
   @Input() newMsg: string;
 
-
   collapsed: boolean = false;
 
   delete() {
-    this.del.emit(this.message.postId);
-    this.messagesService.deleteMessageById(this.message.postId);
-    console.log(this.messagesService.getMessagesById(this.message.postId));
+    this.del.emit(this.message.messageId);
+    this.messagesService.deleteMessageById(this.message.messageId);
+    console.log(this.messagesService.getMessagesById(this.message.messageId));
     for (const m in this.messagesService.getAllMessages()) {
       console.log(this.messagesService.getAllMessages()[m] + ' all msgs');
     }
   }
 
   editMsg() {
-    this.messagesService.updateMessageById(this.message.postId, {content: this.newMsg});
+    this.messagesService.updateMessageById(this.message.messageId, {content: this.newMsg});
     for (const m in this.messagesService.getAllMessages()) {
       console.log(this.messagesService.getAllMessages()[m] + ' all msgs');
     }
