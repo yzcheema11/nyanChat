@@ -129,8 +129,8 @@ describe('MessagesService', () => {
         content: 'its a me'
       });
       service.postMessage(message1);
-      service.updateMessageById(1, {body: 'pasta, pasta, pasta'});
-      expect(message1.body).toEqual('pasta, pasta, pasta');
+      service.updateMessageById(1, {content: 'pasta, pasta, pasta'});
+      expect(message1.content).toEqual('pasta, pasta, pasta');
     }));
 
     it('should return null if no id found', inject([MessagesService], (service: MessagesService) => {
