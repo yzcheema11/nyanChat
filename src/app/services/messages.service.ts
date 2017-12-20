@@ -4,11 +4,10 @@ import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {catchError, map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {API_URL} from "../../environments/environment";
+import {API_URL} from '../../environments/environment';
 
 @Injectable()
 export class MessagesService {
-  lastId = 0;
 
   private postsUrl = API_URL + '/posts';
 
@@ -27,9 +26,6 @@ export class MessagesService {
   }
 
   postMessage(message: Message): MessagesService {
-    if (!message.postId) {
-      message.postId = ++this.lastId;
-    }
     this.messages.push(message);
     console.log('msg srv: ' + message.content);
 
