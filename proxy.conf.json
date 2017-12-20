@@ -1,6 +1,6 @@
 {
   "/" : {
-"target" : "http://localhost:8080",
+"target" : "https://nameless-peak-71330.herokuapp.com",
 "secure" : "false"
 }
 }
