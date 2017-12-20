@@ -16,7 +16,7 @@ export class ActiveChatComponent implements OnInit {
 
   @ViewChild(MessageComponent) child;
 
-  private postsUrl = API_URL + '/posts';
+  private postsUrl = /*API_URL +/**/ '/posts';
   chatMessages: Message[] = [];
 
   mesgId: number;
@@ -38,8 +38,8 @@ export class ActiveChatComponent implements OnInit {
 
   ngOnInit() {
     this.messagesService.currentMessage.subscribe(message => this.display(message));
-
-    setInterval(() => {
+    this.messagesService.connect();
+    /*setInterval(() => {
       this.getPosts.subscribe(next => {
         const tempMessages: Message[] = [];
         for (let x in next) {
@@ -48,7 +48,7 @@ export class ActiveChatComponent implements OnInit {
         }
         this.chatMessages = tempMessages;
       });
-    }, 500);
+    }, 500);/**/
   }
 
 }

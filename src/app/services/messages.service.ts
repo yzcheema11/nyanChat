@@ -4,13 +4,15 @@ import {BehaviorSubject } from 'rxjs/BehaviorSubject';
 import {catchError, map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders } from '@angular/common/http';
 import {Observable} from 'rxjs/Observable';
-import {API_URL} from "../../environments/environment";
+import {API_URL} from '../../environments/environment';
+
+declare let EventSource:any;
 
 @Injectable()
 export class MessagesService {
   lastId= 0;
 
-  private postsUrl = API_URL+'/posts';
+  private postsUrl = /*API_URL + /**/'/posts';
 
   httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
@@ -22,6 +24,16 @@ export class MessagesService {
   constructor(private http: HttpClient ) {
   }
 
+
+  connect(): void{
+    const source = new EventSource('http://localhost:8080/posts/activeChat');
+    source.addEventListener('message', message => {
+      let post: Message= new Message( JSON.parse(message.data));
+      console.log(post);
+
+      this.postMessage(post);
+    });
+  }
   postMessage(message: Message): MessagesService {
     if (!message.postId) {
       message.postId = ++this.lastId;
@@ -31,7 +43,8 @@ export class MessagesService {
 
     this.messageSource.next(message);
 
-    this.http.post(this.postsUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
+
+    // this.http.post(this.postsUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
 
     return this;
   }
@@ -49,7 +62,10 @@ export class MessagesService {
   }
 
   deleteMessageById(id: number): MessagesService {
+    const message = this.getMessagesById(id);
     this.messages = this.messages.filter(message => message.postId !== id);
+
+    this.http.delete(API_URL + '/' + message.postId, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
     return this;
   }
 
