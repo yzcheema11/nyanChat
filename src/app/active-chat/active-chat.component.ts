@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild} from '@angular/core';
-import {MessagesService} from '../services/messages.service';
+import {MessagesService} from '../services/message.service';
 import {Message} from '../models/message.model';
 import {MessageComponent} from '../message/message.component';
 import {HttpClient} from '@angular/common/http';

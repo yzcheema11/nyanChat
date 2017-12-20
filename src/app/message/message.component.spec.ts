@@ -1,8 +1,8 @@
-///<reference path="../services/messages.service.ts"/>
+///<reference path="../services/message.service.ts"/>
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {MessageComponent} from './message.component';
-import {MessagesService} from '../services/messages.service';
+import {MessagesService} from '../services/message.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('MessageComponent', () => {

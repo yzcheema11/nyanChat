@@ -5,7 +5,7 @@ import { MessageComponent } from './message/message.component';
 import { PostMessageComponent } from './post-message/post-message.component';
 import { HeadingImageComponent } from './heading-image/heading-image.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MessagesService} from './services/messages.service';
+import {MessagesService} from './services/message.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {

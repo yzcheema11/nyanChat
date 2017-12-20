@@ -2,7 +2,7 @@ import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
 
 import {ActiveChatComponent} from './active-chat.component';
 import {MessageComponent} from '../message/message.component';
-import {MessagesService} from '../services/messages.service';
+import {MessagesService} from '../services/message.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Message} from '../models/message.model';
 

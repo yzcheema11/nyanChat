@@ -10,7 +10,7 @@ import { MessageComponent } from './message/message.component';
 import { PostMessageComponent } from './post-message/post-message.component';
 import { HeadingImageComponent} from './heading-image/heading-image.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { MessagesService} from './services/messages.service';
+import { MessagesService} from './services/message.service';
 import {HttpClientModule} from '@angular/common/http';
 import { UsersComponent } from './users/users.component';
 import { LoginComponent } from './login/login.component';

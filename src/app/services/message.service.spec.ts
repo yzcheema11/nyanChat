@@ -1,6 +1,6 @@
 import {TestBed, inject} from '@angular/core/testing';
 import {Message} from '../models/message.model';
-import {MessagesService} from './messages.service';
+import {MessagesService} from './message.service';
 import {HttpClientModule} from '@angular/common/http';
 
 describe('MessagesService', () => {
