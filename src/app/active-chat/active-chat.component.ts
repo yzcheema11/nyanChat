@@ -2,7 +2,7 @@ import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessagesService} from '../services/messages.service';
 import {Message} from '../models/message.model';
 import {MessageComponent} from '../message/message.component';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {API_URL} from '../../environments/environment';
 
 
@@ -37,9 +37,7 @@ export class ActiveChatComponent implements OnInit {
 
   ngOnInit() {
     this.messagesService.currentMessage.subscribe(message => this.display(message));
-    setInterval(() => {
-      this.chatMessages = this.messagesService.getAllMessages();
-    }, 500);
+    this.messagesService.activeChatListener();
   }
 
 }
