@@ -20,35 +20,27 @@ export class DisplayMessageComponent implements OnInit {
   delete() {
 
     this.del.emit(this.id);
-    this.messagesService.deleteMessageById(this.id);
-    console.log(this.messagesService.getMessagesById(this.id));
-    for (const m in this.messagesService.getAllMessages()) {
-      console.log(this.messagesService.getAllMessages()[m] + ' all msgs');
+    this.messageService.deleteMessageById(this.id);
+    console.log(this.messageService.getMessagesById(this.id));
+    for (const m in this.messageService.getAllMessages()) {
+      console.log(this.messageService.getAllMessages()[m] + ' all msgs');
     }
   }
 
   editMsg() {
-    this.messagesService.updateMessageById(this.id, {content: this.newMsg});
-    for (const m in this.messagesService.getAllMessages()) {
-      console.log(this.messagesService.getAllMessages()[m] + ' all msgs');
+    this.messageService.updateMessageById(this.id, {content: this.newMsg});
+    for (const m in this.messageService.getAllMessages()) {
+      console.log(this.messageService.getAllMessages()[m] + ' all msgs');
     }
   }
 
-  constructor(private messagesService: MessageService) {
+  constructor(private messageService: MessageService) {
 
   }
 
   toggleOptionsMenu() {
 
     this.collapsed = !this.collapsed;
-
-    // let ele = document.getElementById('optionmenu');
-    // if (ele.style.display === 'block') {
-    //   ele.style.display = 'none';
-    // }
-    // else {
-    //   ele.style.display = 'block';
-    // }
   }
 
   ngOnInit() {

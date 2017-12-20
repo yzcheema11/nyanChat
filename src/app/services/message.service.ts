@@ -53,8 +53,8 @@ export class MessageService {
     return this.messages.filter(message => message.messageId === id).pop();
   }
 
-  getMessagesByUserName(userName: string): Message {
-    return this.messages.filter(message => message.userName === userName).pop();
+  getMessagesByUserId(userId: number): Message {
+    return this.messages.filter(message => message.userId === userId).pop();
   }
 
   deleteMessageById(id: number): MessageService {

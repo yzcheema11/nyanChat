@@ -6,8 +6,8 @@ import {MessageService} from '../services/message.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('MessageComponent', () => {
-  let component: MessageComponent;
-  let fixture: ComponentFixture<MessageComponent>;
+  let component: DisplayMessageComponent;
+  let fixture: ComponentFixture<DisplayMessageComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
