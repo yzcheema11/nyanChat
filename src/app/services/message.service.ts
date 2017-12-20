@@ -7,7 +7,7 @@ import {Observable} from 'rxjs/Observable';
 import {API_URL} from '../../environments/environment';
 
 @Injectable()
-export class MessagesService {
+export class MessageService {
 
   private messagesUrl = API_URL + '/messages';
 
@@ -25,7 +25,7 @@ export class MessagesService {
   constructor(private http: HttpClient) {
   }
 
-  postMessage(message: Message): MessagesService {
+  postMessage(message: Message): MessageService {
     this.messages.push(message);
     console.log('msg srv: ' + message.content);
 
@@ -57,7 +57,7 @@ export class MessagesService {
     return this.messages.filter(message => message.userName === userName).pop();
   }
 
-  deleteMessageById(id: number): MessagesService {
+  deleteMessageById(id: number): MessageService {
     this.messages = this.messages.filter(message => message.messageId !== id);
     return this;
   }

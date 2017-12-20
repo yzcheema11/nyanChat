@@ -1,8 +1,8 @@
-///<reference path="../services/messages.service.ts"/>
+///<reference path="../services/message.service.ts"/>
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
-import {MessageComponent} from './message.component';
-import {MessagesService} from '../services/messages.service';
+import {DisplayMessageComponent} from './display-message.component';
+import {MessageService} from '../services/message.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 describe('MessageComponent', () => {
@@ -11,15 +11,15 @@ describe('MessageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [MessageComponent],
-      providers: [MessagesService],
+      declarations: [DisplayMessageComponent],
+      providers: [MessageService],
       imports: [FormsModule, ReactiveFormsModule],
     })
       .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(MessageComponent);
+    fixture = TestBed.createComponent(DisplayMessageComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

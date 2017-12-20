@@ -5,18 +5,18 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 import { AppComponent } from './app.component';
 import { ActiveChatComponent } from './active-chat/active-chat.component';
-import { MessageComponent } from './message/message.component';
+import { DisplayMessageComponent } from './display-message/display-message.component';
 import { PostMessageComponent } from './post-message/post-message.component';
 import { HeadingImageComponent} from './heading-image/heading-image.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { MessagesService} from './services/messages.service';
+import { MessageService} from './services/message.service';
 import {HttpClientModule} from '@angular/common/http';
 
 @NgModule({
   declarations: [
     AppComponent,
     ActiveChatComponent,
-    MessageComponent,
+    DisplayMessageComponent,
     PostMessageComponent,
     HeadingImageComponent,
     SidebarComponent
@@ -27,7 +27,7 @@ import {HttpClientModule} from '@angular/common/http';
     ReactiveFormsModule,
     HttpClientModule
   ],
-  providers: [MessagesService],
+  providers: [MessageService],
   bootstrap: [AppComponent]
 
 })

@@ -1,7 +1,7 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
-import {MessagesService} from '../services/messages.service';
+import {MessageService} from '../services/message.service';
 import {Message} from '../models/message.model';
-import {MessageComponent} from '../message/message.component';
+import {DisplayMessageComponent} from '../display-message/display-message.component';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {API_URL} from "../../environments/environment";
 
@@ -14,31 +14,31 @@ import {API_URL} from "../../environments/environment";
 
 export class ActiveChatComponent implements OnInit {
 
-  @ViewChild(MessageComponent) child;
+  @ViewChild(DisplayMessageComponent) child;
 
-  private postsUrl = API_URL + '/posts';
+  private messagesUrl = API_URL + '/messages';
   chatMessages: Message[] = [];
 
   mesgId: number;
 
   display(message: Message) {
-    this.mesgId = message.postId;
+    this.mesgId = message.messageId;
     console.log(message);
     this.chatMessages.push(message);
   }
 
   onDelete(id: number) {
     console.log(id);
-    this.chatMessages = this.chatMessages.filter(message => message.postId !== id);
+    this.chatMessages = this.chatMessages.filter(message => message.messageId !== id);
   }
 
-  constructor(private messagesService: MessagesService, private http: HttpClient) {
+  constructor(private messageService: MessageService, private http: HttpClient) {
   }
 
   ngOnInit() {
-    this.messagesService.currentMessage.subscribe(message => this.display(message));
+    this.messageService.currentMessage.subscribe(message => this.display(message));
     setInterval(() => {
-      this.chatMessages = this.messagesService.getAllMessages();
+      this.chatMessages = this.messageService.getAllMessages();
     }, 500);
   }
 

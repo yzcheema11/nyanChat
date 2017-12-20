@@ -1,11 +1,11 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { ActiveChatComponent } from './active-chat/active-chat.component';
-import { MessageComponent } from './message/message.component';
+import { DisplayMessageComponent } from './display-message/display-message.component';
 import { PostMessageComponent } from './post-message/post-message.component';
 import { HeadingImageComponent } from './heading-image/heading-image.component';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {MessagesService} from './services/messages.service';
+import {MessageService} from './services/message.service';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -13,13 +13,13 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         ActiveChatComponent,
-        MessageComponent,
+        DisplayMessageComponent,
         PostMessageComponent,
         HeadingImageComponent
       ],
       imports: [FormsModule,
         ReactiveFormsModule],
-      providers: [MessagesService],
+      providers: [MessageService],
     }).compileComponents();
   }));
   it('should create the app', async(() => {

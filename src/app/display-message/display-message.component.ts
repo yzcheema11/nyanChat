@@ -1,13 +1,13 @@
 import {Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
-import {MessagesService} from '../services/messages.service';
+import {MessageService} from '../services/message.service';
 
 
 @Component({
-  selector: 'app-message',
-  templateUrl: './message.component.html',
-  styleUrls: ['./message.component.css']
+  selector: 'app-display-message',
+  templateUrl: './display-message.component.html',
+  styleUrls: ['./display-message.component.css']
 })
-export class MessageComponent implements OnInit {
+export class DisplayMessageComponent implements OnInit {
 
   @Output() del: EventEmitter<number> = new EventEmitter();
 
@@ -34,7 +34,7 @@ export class MessageComponent implements OnInit {
     }
   }
 
-  constructor(private messagesService: MessagesService) {
+  constructor(private messagesService: MessageService) {
 
   }
 
