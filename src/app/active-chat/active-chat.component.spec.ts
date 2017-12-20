@@ -2,7 +2,7 @@ import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
 
 import {ActiveChatComponent} from './active-chat.component';
 import {MessageComponent} from '../message/message.component';
-import {MessagesService} from '../services/message.service';
+import {MessageService} from '../services/message.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Message} from '../models/message.model';
 
@@ -14,7 +14,7 @@ describe('ActiveChatComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [ActiveChatComponent, MessageComponent],
-      providers: [MessagesService],
+      providers: [MessageService],
       imports: [FormsModule, ReactiveFormsModule],
     })
       .compileComponents();
@@ -31,14 +31,14 @@ describe('ActiveChatComponent', () => {
   });
 
   describe('onInIt subscribes to new Messages', () => {
-    it('should start with a welcome message', inject([MessagesService], (service: MessagesService) => {
+    it('should start with a welcome message', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({userName: 'Admin', body: 'Welcome to NyanChat'});
       let subscription: Message;
       service.currentMessage.subscribe(message => subscription = message);
       expect(subscription).toEqual(message1);
     }));
 
-    it('should update with ', inject([MessagesService], (service: MessagesService) => {
+    it('should update with ', inject([MessageService], (service: MessageService) => {
       const message1 = new Message({userName: 'Test', body: 'Subscribed?'});
       service.postMessage(message1);
       let subscription: Message;
