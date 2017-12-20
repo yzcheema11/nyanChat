@@ -1,6 +1,6 @@
 
 div #optionmenu {
-  display: none;
+  display: block;
   /*background: whitesmoke;*/
   /*padding: 2px;*/
 }

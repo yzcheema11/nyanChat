@@ -1,6 +1,6 @@
 import {Component, OnInit, ViewChild} from '@angular/core';
 import {MessagesService} from '../services/messages.service';
-import {Message} from '../message.model';
+import {Message} from '../models/message.model';
 import {MessageComponent} from '../message/message.component';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {API_URL} from "../../environments/environment";
@@ -20,7 +20,6 @@ export class ActiveChatComponent implements OnInit {
   chatMessages: Message[] = [];
 
   mesgId: number;
-  getPosts = this.http.get<Message[]>(this.postsUrl);
 
   display(message: Message) {
     this.mesgId = message.postId;
@@ -38,16 +37,8 @@ export class ActiveChatComponent implements OnInit {
 
   ngOnInit() {
     this.messagesService.currentMessage.subscribe(message => this.display(message));
-
     setInterval(() => {
-      this.getPosts.subscribe(next => {
-        const tempMessages: Message[] = [];
-        for (let x in next) {
-          tempMessages.push(new Message(next[x]));
-          console.log(next[x]);
-        }
-        this.chatMessages = tempMessages;
-      });
+      this.chatMessages = this.messagesService.getAllMessages();
     }, 500);
   }
 
