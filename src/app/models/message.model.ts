@@ -8,12 +8,12 @@ export class Message {
   //   this._userName = value;
   // }
   //
-  // get postId(): number {
-  //   return this._postId;
+  // get messageId(): number {
+  //   return this._messageId;
   // }
   //
-  // set postId(value: number) {
-  //   this._postId = value;
+  // set messageId(value: number) {
+  //   this._messageId = value;
   // }
   //
   // get content(): string {
@@ -60,7 +60,7 @@ export class Message {
   // private _userName: string;
 
 
-  postId: number;
+  messageId: number;
   userId: number;
   threadId: number;
   timestamp: string;// = new Date().toLocaleDateString();
@@ -73,6 +73,6 @@ export class Message {
   }
 
   toString(): string {
-    return this.postId + ' ' + this.timestamp + ': ' + this.content;
+    return this.userName + ' ' + this.timestamp + ': ' + this.content;
   }
 }
