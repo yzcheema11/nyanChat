@@ -9,12 +9,12 @@ declare let EventSource: any;
 @Injectable()
 export class MessagesService {
 
-
+  messages: Message [] = [];
   private messagesUrl = API_URL + '/messages';
 
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
-  messages: Message[] = [];
+
   messageSource = new BehaviorSubject<Message>(new Message({
     messageId: 0,
     timestamp: 'Admin Message',
@@ -26,22 +26,22 @@ export class MessagesService {
   }
 
   postMessage(message: Message): MessagesService {
-    this.messages.push(message);
-    this.messageSource.next(message);
     this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
     return this;
   }
 
-  getAllMessages() {
+  getAllMessages(): Message [] {
     const getMessages = this.http.get<Message[]>(this.messagesUrl);
+    const tempMessages: Message[] = [];
     getMessages.subscribe(next => {
-      const tempMessages: Message[] = [];
       for (const x in next) {
-        tempMessages.push(new Message(next[x]));
-        console.log(next[x]);
+        const messageHolder: Message = new Message(next[x]);
+        tempMessages.push(messageHolder);
+        console.log(messageHolder);
+        this.messageSource.next(messageHolder);
       }
-      this.messages = tempMessages;
     });
+    this.messages = tempMessages;
     return this.messages;
   }
 
@@ -70,7 +70,7 @@ export class MessagesService {
   activeChatListener(): void {
     const source = new EventSource(API_URL + '/mainChat/');
     source.addEventListener('message', message => {
-      let post: Message = new Message(JSON.parse(message.data));
+      const post: Message = new Message(JSON.parse(message.data));
       this.messageSource.next(post);
     });
   }
