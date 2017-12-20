@@ -9,13 +9,13 @@ import {API_URL} from '../../environments/environment';
 @Injectable()
 export class MessagesService {
 
-  private postsUrl = API_URL + '/posts';
+  private messagesUrl = API_URL + '/messages';
 
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
   messages: Message[] = [];
   messageSource = new BehaviorSubject<Message>(new Message({
-    postId: 0,
+    messageId: 0,
     timestamp: 'Admin Message',
     content: 'Welcome to NyanChat'
   }));
@@ -31,14 +31,14 @@ export class MessagesService {
 
     this.messageSource.next(message);
 
-    this.http.post(this.postsUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
+    this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
 
     return this;
   }
 
   getAllMessages() {
-    const getPosts = this.http.get<Message[]>(this.postsUrl);
-    getPosts.subscribe(next => {
+    const getMessages = this.http.get<Message[]>(this.messagesUrl);
+    getMessages.subscribe(next => {
       const tempMessages: Message[] = [];
       for (const x in next) {
         tempMessages.push(new Message(next[x]));
@@ -50,7 +50,7 @@ export class MessagesService {
   }
 
   getMessagesById(id: number): Message {
-    return this.messages.filter(message => message.postId === id).pop();
+    return this.messages.filter(message => message.messageId === id).pop();
   }
 
   getMessagesByUserName(userName: string): Message {
@@ -58,7 +58,7 @@ export class MessagesService {
   }
 
   deleteMessageById(id: number): MessagesService {
-    this.messages = this.messages.filter(message => message.postId !== id);
+    this.messages = this.messages.filter(message => message.messageId !== id);
     return this;
   }
 
