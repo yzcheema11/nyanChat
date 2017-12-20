@@ -1,13 +1,14 @@
 import {Injectable} from '@angular/core';
 import {Message} from '../models/message.model';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {catchError, map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
 import {API_URL} from '../../environments/environment';
+
+declare let EventSource: any;
 
 @Injectable()
 export class MessagesService {
+
 
   private messagesUrl = API_URL + '/messages';
 
@@ -21,18 +22,13 @@ export class MessagesService {
   }));
   currentMessage = this.messageSource.asObservable();
 
-
   constructor(private http: HttpClient) {
   }
 
   postMessage(message: Message): MessagesService {
     this.messages.push(message);
-    console.log('msg srv: ' + message.content);
-
     this.messageSource.next(message);
-
     this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
-
     return this;
   }
 
@@ -69,5 +65,13 @@ export class MessagesService {
     }
     Object.assign(message, values);
     return message;
+  }
+
+  activeChatListener(): void {
+    const source = new EventSource(API_URL + '/mainChat/');
+    source.addEventListener('message', message => {
+      let post: Message = new Message(JSON.parse(message.data));
+      this.messageSource.next(post);
+    });
   }
 }
