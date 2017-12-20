@@ -12,7 +12,7 @@ declare let EventSource:any;
 export class MessagesService {
   lastId= 0;
 
-  private postsUrl = /*API_URL + /**/'/posts';
+  private postsUrl = API_URL + /**/'/posts';
 
   httpOptions = {headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
 
@@ -26,7 +26,7 @@ export class MessagesService {
 
 
   connect(): void{
-    const source = new EventSource('http://localhost:8080/posts/activeChat');
+    const source = new EventSource('http://localhost:8080/mainChat');
     source.addEventListener('message', message => {
       let post: Message= new Message( JSON.parse(message.data));
       console.log(post);

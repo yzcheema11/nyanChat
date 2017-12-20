@@ -16,7 +16,7 @@ export class ActiveChatComponent implements OnInit {
 
   @ViewChild(MessageComponent) child;
 
-  private postsUrl = /*API_URL +/**/ '/posts';
+  private postsUrl = API_URL +/**/ '/posts';
   chatMessages: Message[] = [];
 
   mesgId: number;
