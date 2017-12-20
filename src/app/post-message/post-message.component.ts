@@ -16,7 +16,7 @@ export class PostMessageComponent implements OnInit {
     if(this.str.length > 0) {
 
       const temp = new Message({userName: 'Enter a Name in Model', content: this.str});
-      this.messagesService.postMessage(temp);
+      this.messageService.postMessage(temp);
       this.str = '';
     }
   }
