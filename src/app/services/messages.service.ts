@@ -1,19 +1,20 @@
 import {Injectable} from '@angular/core';
 import {Message} from '../models/message.model';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
-import {catchError, map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {Observable} from 'rxjs/Observable';
 import {API_URL} from '../../environments/environment';
+
+declare let EventSource: any;
 
 @Injectable()
 export class MessagesService {
 
+  messages: Message [] = [];
   private messagesUrl = API_URL + '/messages';
 
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
 
-  messages: Message[] = [];
+
   messageSource = new BehaviorSubject<Message>(new Message({
     messageId: 0,
     timestamp: 'Admin Message',
@@ -21,36 +22,46 @@ export class MessagesService {
   }));
   currentMessage = this.messageSource.asObservable();
 
-
   constructor(private http: HttpClient) {
   }
 
   postMessage(message: Message): MessagesService {
+
     this.messages.push(message);
-    console.log('msg srv: ' + message.content);
-
-    this.messageSource.next(message);
-
     this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
-
     return this;
   }
 
-  getAllMessages() {
+  getAllMessages(): Message [] {
     const getMessages = this.http.get<Message[]>(this.messagesUrl);
+    const tempMessages: Message[] = [];
     getMessages.subscribe(next => {
-      const tempMessages: Message[] = [];
       for (const x in next) {
-        tempMessages.push(new Message(next[x]));
-        console.log(next[x]);
+        const messageHolder: Message = new Message(next[x]);
+        tempMessages.push(messageHolder);
+        console.log(messageHolder);
+        this.messageSource.next(messageHolder);
       }
-      this.messages = tempMessages;
     });
+    this.messages = tempMessages;
     return this.messages;
   }
 
-  getMessagesById(id: number): Message {
-    return this.messages.filter(message => message.messageId === id).pop();
+  getMessageById(id: number): Message {
+    const getMessage = this.http.get<Message>(this.messagesUrl + '/{{messageId}}');
+    let returnMessage: Message;
+    // getMessages.subscribe(next => {
+    //   const tempMessages: Message[] = [];
+    //   for (const x in next) {
+    //     tempMessages.push(new Message(next[x]));
+    //     console.log(next[x]);
+    //   }
+    //   this.messages = tempMessages;
+    // });
+    getMessage.subscribe(next => {
+      returnMessage = new Message(next);
+    });
+    return returnMessage;
   }
 
   getMessagesByUserName(userName: string): Message {
@@ -63,11 +74,19 @@ export class MessagesService {
   }
 
   updateMessageById(id: number, values: Object = {}): Message {
-    const message = this.getMessagesById(id);
+    const message = this.getMessageById(id);
     if (!message) {
       return null;
     }
     Object.assign(message, values);
     return message;
+  }
+
+  activeChatListener(): void {
+    const source = new EventSource(API_URL + '/mainChat/');
+    source.addEventListener('message', message => {
+      const post: Message = new Message(JSON.parse(message.data));
+      this.messageSource.next(post);
+    });
   }
 }

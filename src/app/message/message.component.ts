@@ -20,7 +20,7 @@ export class MessageComponent implements OnInit {
   delete() {
     this.del.emit(this.message.messageId);
     this.messagesService.deleteMessageById(this.message.messageId);
-    console.log(this.messagesService.getMessagesById(this.message.messageId));
+    console.log(this.messagesService.getMessageById(this.message.messageId));
     for (const m in this.messagesService.getAllMessages()) {
       console.log(this.messagesService.getAllMessages()[m] + ' all msgs');
     }

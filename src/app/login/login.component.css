@@ -1,9 +1,11 @@
 #login {
+  display: none;
   width: 95%;
   height: max-content;
   background: grey;
   color: white;
   padding: 3%;
+  
 }
 
 input {

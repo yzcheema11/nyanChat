@@ -2,7 +2,7 @@ import { Component, OnInit, ViewChild} from '@angular/core';
 import {MessagesService} from '../services/messages.service';
 import {Message} from '../models/message.model';
 import {MessageComponent} from '../message/message.component';
-import {HttpClient, HttpHeaders} from '@angular/common/http';
+import {HttpClient} from '@angular/common/http';
 import {API_URL} from '../../environments/environment';
 
 
@@ -16,7 +16,7 @@ export class ActiveChatComponent implements OnInit {
 
   @ViewChild(MessageComponent) child;
 
-  private postsUrl = API_URL + '/posts';
+  private mesagesUrl = API_URL + '/messages';
   chatMessages: Message[] = [];
 
   mesgId: number;
@@ -36,19 +36,23 @@ export class ActiveChatComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.messagesService.getAllMessages();
     this.messagesService.currentMessage.subscribe(message => this.display(message));
-    setInterval(() => {
-
-    //   this.getPosts.subscribe(next => {
-    //     const tempMessages: Message[] = [];
-    //     for (let x in next) {
-    //       tempMessages.push(new Message(next[x]));
-    //       console.log(next[x]);
-    //     }
-    //     this.chatMessages = tempMessages;
-    //   });
-    // }, 5000);
-      this.chatMessages = this.messagesService.getAllMessages();
-    }, 5000);
+// <<<<<<< HEAD
+//     setInterval(() => {
+//
+//     //   this.getPosts.subscribe(next => {
+//     //     const tempMessages: Message[] = [];
+//     //     for (let x in next) {
+//     //       tempMessages.push(new Message(next[x]));
+//     //       console.log(next[x]);
+//     //     }
+//     //     this.chatMessages = tempMessages;
+//     //   });
+//     // }, 5000);
+//       this.chatMessages = this.messagesService.getAllMessages();
+//     }, 5000);
+// =======
+    this.messagesService.activeChatListener();
   }
 }
