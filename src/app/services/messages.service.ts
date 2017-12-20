@@ -26,6 +26,8 @@ export class MessagesService {
   }
 
   postMessage(message: Message): MessagesService {
+
+    this.messages.push(message);
     this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
     return this;
   }
@@ -45,8 +47,21 @@ export class MessagesService {
     return this.messages;
   }
 
-  getMessagesById(id: number): Message {
-    return this.messages.filter(message => message.messageId === id).pop();
+  getMessageById(id: number): Message {
+    const getMessage = this.http.get<Message>(this.messagesUrl + '/{{messageId}}');
+    let returnMessage: Message;
+    // getMessages.subscribe(next => {
+    //   const tempMessages: Message[] = [];
+    //   for (const x in next) {
+    //     tempMessages.push(new Message(next[x]));
+    //     console.log(next[x]);
+    //   }
+    //   this.messages = tempMessages;
+    // });
+    getMessage.subscribe(next => {
+      returnMessage = new Message(next);
+    });
+    return returnMessage;
   }
 
   getMessagesByUserName(userName: string): Message {
@@ -59,7 +74,7 @@ export class MessagesService {
   }
 
   updateMessageById(id: number, values: Object = {}): Message {
-    const message = this.getMessagesById(id);
+    const message = this.getMessageById(id);
     if (!message) {
       return null;
     }

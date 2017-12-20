@@ -63,10 +63,10 @@ export class Message {
   messageId: number;
   userId: number;
   threadId: number;
-  timestamp: string;// = new Date().toLocaleDateString();
+  timestamp: string; // = new Date().toLocaleDateString();
   content: string;
-  editedTime:string;
-  userName:string;
+  editedTime: string;
+  userName: string;
 
   constructor(values: Object = {}) {
     Object.assign(this, values);
