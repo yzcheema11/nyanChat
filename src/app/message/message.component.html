@@ -1,6 +1,6 @@
 <div id="messagebubble">
   <div id="heading">
-    <h6>{{message.toString()}}</h6>
+    <h6>{{message.userName}} {{message.timestamp}}:</h6>
     <i id="option_ellipsis" (click)="toggleOptionsMenu()" class="fa fa-ellipsis-v" aria-hidden="true" ></i>
   </div>
   <p>{{message.content}}</p>
