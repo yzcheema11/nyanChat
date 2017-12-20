@@ -3,7 +3,7 @@ h6 {
   display: inline;
   font-size: .75em;
   font-style: oblique;
-  float: top;
+  /*float: top;*/
 }
 
 p {
@@ -17,6 +17,7 @@ div #optionmenu {
 
 #heading {
   border-bottom: 2px inset grey;
+  width: 102%;
 }
 
 #option_ellipsis {
