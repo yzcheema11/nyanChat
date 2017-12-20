@@ -22,14 +22,14 @@ export class ActiveChatComponent implements OnInit {
   mesgId: number;
 
   display(message: Message) {
-    this.mesgId = message.postId;
+    this.mesgId = message.messageId;
     console.log(message);
     this.chatMessages.push(message);
   }
 
   onDelete(id: number) {
     console.log(id);
-    this.chatMessages = this.chatMessages.filter(message => message.postId !== id);
+    this.chatMessages = this.chatMessages.filter(message => message.messageId !== id);
   }
 
   constructor(private messagesService: MessagesService, private http: HttpClient) {
