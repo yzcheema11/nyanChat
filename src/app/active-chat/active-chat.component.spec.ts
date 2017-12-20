@@ -4,7 +4,7 @@ import {ActiveChatComponent} from './active-chat.component';
 import {MessageComponent} from '../message/message.component';
 import {MessagesService} from '../services/messages.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {Message} from '../message.model';
+import {Message} from '../models/message.model';
 
 
 describe('ActiveChatComponent', () => {

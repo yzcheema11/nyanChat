@@ -1,6 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import { MessagesService } from '../services/messages.service';
-import { Message } from '../message.model';
+import { Message } from '../models/message.model';
 
 @Component({
   selector: 'app-post-message',
@@ -14,7 +14,7 @@ export class PostMessageComponent implements OnInit {
   @Input()
   logMsg() {
     if(this.str.length > 0) {
-      const temp = new Message({userName: 'test', body: this.str});
+      const temp = new Message({userName: 'test', content: this.str});
       this.messagesService.postMessage(temp);
       this.str = '';
     }

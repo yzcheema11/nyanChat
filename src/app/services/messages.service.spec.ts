@@ -1,5 +1,5 @@
 import {TestBed, inject} from '@angular/core/testing';
-import {Message} from '../message.model';
+import {Message} from '../models/message.model';
 import {MessagesService} from './messages.service';
 
 describe('MessagesService', () => {
