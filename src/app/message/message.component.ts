@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Output, Input, OnInit} from '@angular/core';
-import {MessagesService} from '../services/message.service';
+import {MessageService} from '../services/message.service';
 import {Message} from '../models/message.model';
 
 @Component({
@@ -33,7 +33,7 @@ export class MessageComponent implements OnInit {
     }
   }
 
-  constructor(private messagesService: MessagesService) {
+  constructor(private messagesService: MessageService) {
 
   }
 

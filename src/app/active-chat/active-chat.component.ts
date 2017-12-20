@@ -3,7 +3,7 @@ import {MessageService} from '../services/message.service';
 import {Message} from '../models/message.model';
 import {DisplayMessageComponent} from '../display-message/display-message.component';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {API_URL} from "../../environments/environment";
+import {API_URL} from '../../environments/environment';
 
 
 @Component({
@@ -36,8 +36,8 @@ export class ActiveChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.messagesService.getAllMessages();
-    this.messagesService.currentMessage.subscribe(message => this.display(message));
-    this.messagesService.activeChatListener();
+    this.messageService.getAllMessages();
+    this.messageService.currentMessage.subscribe(message => this.display(message));
+    this.messageService.activeChatListener();
   }
 }

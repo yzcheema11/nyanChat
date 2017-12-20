@@ -7,7 +7,7 @@ import {API_URL} from '../../environments/environment';
 declare let EventSource: any;
 
 @Injectable()
-export class MessagesService {
+export class MessageService {
 
   messages: Message [] = [];
   private messagesUrl = API_URL + '/messages';
@@ -25,7 +25,7 @@ export class MessagesService {
   constructor(private http: HttpClient) {
   }
 
-  postMessage(message: Message): MessagesService {
+  postMessage(message: Message): MessageService {
 
     this.messages.push(message);
     this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
@@ -64,11 +64,8 @@ export class MessagesService {
     return returnMessage;
   }
 
-  getMessagesByUserName(userName: string): Message {
-    return this.messages.filter(message => message.userName === userName).pop();
-  }
 
-  deleteMessageById(id: number): MessagesService {
+  deleteMessageById(id: number): MessageService {
     this.messages = this.messages.filter(message => message.messageId !== id);
     return this;
   }

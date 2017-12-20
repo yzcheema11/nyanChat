@@ -21,7 +21,7 @@ export class DisplayMessageComponent implements OnInit {
 
     this.del.emit(this.id);
     this.messageService.deleteMessageById(this.id);
-    console.log(this.messageService.getMessagesById(this.id));
+    console.log(this.messageService.getMessageById(this.id));
     for (const m in this.messageService.getAllMessages()) {
       console.log(this.messageService.getAllMessages()[m] + ' all msgs');
     }
