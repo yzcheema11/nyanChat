@@ -10,7 +10,7 @@ import { PostMessageComponent } from './post-message/post-message.component';
 import { HeadingImageComponent} from './heading-image/heading-image.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { MessageService} from './services/message.service';
-import {HttpClientModule} from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [

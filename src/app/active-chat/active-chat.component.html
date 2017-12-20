@@ -4,7 +4,7 @@ Placeholder github logo
 <div *ngFor="let message of chatMessages" id="chatArea" >
 
   {{message.toString()}}
-  <app-message [id]="message.postId" (del)="onDelete($event)"></app-message>
+  <app-display-message [id]="message.messageId" (del)="onDelete($event)"></app-display-message>
 
   <div id="bottom"></div>
 </div>
