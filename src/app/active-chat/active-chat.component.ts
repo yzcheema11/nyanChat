@@ -36,10 +36,8 @@ export class ActiveChatComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.messageService.currentMessage.subscribe(message => this.display(message));
-    setInterval(() => {
-      this.chatMessages = this.messageService.getAllMessages();
-    }, 500);
+    this.messagesService.getAllMessages();
+    this.messagesService.currentMessage.subscribe(message => this.display(message));
+    this.messagesService.activeChatListener();
   }
-
 }
