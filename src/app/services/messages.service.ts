@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {Message} from '../message.model';
+import {Message} from '../models/message.model';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {catchError, map, tap} from 'rxjs/operators';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
