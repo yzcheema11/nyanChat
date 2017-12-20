@@ -32,14 +32,14 @@ describe('ActiveChatComponent', () => {
 
   describe('onInIt subscribes to new Messages', () => {
     it('should start with a welcome message', inject([MessagesService], (service: MessagesService) => {
-      let message1 = new Message({userName: 'Admin', body: 'Welcome to NyanChat'});
+      const message1 = new Message({userName: 'Admin', body: 'Welcome to NyanChat'});
       let subscription: Message;
       service.currentMessage.subscribe(message => subscription = message);
       expect(subscription).toEqual(message1);
     }));
 
     it('should update with ', inject([MessagesService], (service: MessagesService) => {
-      let message1 = new Message({userName: 'Test', body: 'Subscribed?'});
+      const message1 = new Message({userName: 'Test', body: 'Subscribed?'});
       service.postMessage(message1);
       let subscription: Message;
       service.currentMessage.subscribe(message => subscription = message);

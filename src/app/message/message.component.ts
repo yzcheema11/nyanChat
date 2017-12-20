@@ -40,13 +40,6 @@ export class MessageComponent implements OnInit {
   toggleOptionsMenu() {
 
     this.collapsed = !this.collapsed;
-    // let ele = document.getElementById('optionmenu');
-    // if (ele.style.display === 'block') {
-    //   ele.style.display = 'none';
-    // }
-    // else {
-    //   ele.style.display = 'block';
-    // }
   }
 
   ngOnInit() {
