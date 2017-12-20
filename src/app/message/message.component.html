@@ -1,7 +1,11 @@
-<div>
-  <i id="option_ellipsis" (click)="toggleOptionsMenu()" class="fa fa-ellipsis-v" aria-hidden="true" ></i>
+<div id="messagebubble">
+  <div id="heading">
+    <h6>{{message.userName}} {{message.timestamp}}:</h6>
+    <i id="option_ellipsis" (click)="toggleOptionsMenu()" class="fa fa-ellipsis-v" aria-hidden="true" ></i>
+  </div>
+  <p>{{message.content}}</p>
   <div *ngIf="collapsed" id="optionmenu">
-    <input type="md-textarea" ng-model="appAnimation" id="str" [(ngModel)]="newMsg"/>
+    <input type="text" ng-model="appAnimation" id="str" [(ngModel)]="newMsg"/>
     <button class="btn-sm" (click)="editMsg()">Edit Msg</button>
     <button class="btn-sm" (click)="delete()">Delete</button>
   </div>
