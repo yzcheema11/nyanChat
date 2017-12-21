@@ -1,9 +1,9 @@
-///<reference path="../services/message.service.ts"/>
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {DisplayMessageComponent} from './display-message.component';
 import {MessageService} from '../services/message.service';
-import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {FormsModule} from '@angular/forms';
+import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('MessageComponent', () => {
   let component: DisplayMessageComponent;
@@ -11,20 +11,17 @@ describe('MessageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
+      imports: [FormsModule],
       declarations: [DisplayMessageComponent],
-      providers: [MessageService],
-      imports: [FormsModule, ReactiveFormsModule],
-    })
-      .compileComponents();
-  }));
+      providers: [MessageService, HttpClient, HttpHandler],
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(DisplayMessageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  }));
 
-  it('should create', () => {
+  it('should create DisplayMessageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
+

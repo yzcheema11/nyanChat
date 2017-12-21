@@ -1,9 +1,9 @@
-///<reference path="../services/message.service.ts"/>
 import {async, ComponentFixture, TestBed} from '@angular/core/testing';
 
 import {PostMessageComponent} from './post-message.component';
 import {MessageService} from '../services/message.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HttpClient, HttpHandler} from "@angular/common/http";
 
 describe('PostMessageComponent', () => {
   let component: PostMessageComponent;
@@ -12,19 +12,15 @@ describe('PostMessageComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [PostMessageComponent],
-      providers: [MessageService],
+      providers: [MessageService, HttpClient, HttpHandler],
       imports: [FormsModule, ReactiveFormsModule],
-    })
-      .compileComponents();
-  }));
+    });
 
-  beforeEach(() => {
     fixture = TestBed.createComponent(PostMessageComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+  }));
 
-  it('should create', () => {
+  it('should create PostMessageComponent', () => {
     expect(component).toBeTruthy();
   });
 });
