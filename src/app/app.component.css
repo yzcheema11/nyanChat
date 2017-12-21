@@ -1,6 +1,6 @@
-.shift-up {
+/*.shift-up {
   margin-top: -10vw;
-}
+}*/
 
 .background {
   background-color: rgb(2, 41, 84);
@@ -9,7 +9,7 @@
 }
 
 .main {
-  height:100vh;
+  height:90vh;
 }
 
 h2 {
@@ -37,4 +37,3 @@ h2 {
   border-radius: 10px;
   box-shadow: -5px 0px 12px black;
 }
-
