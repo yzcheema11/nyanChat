@@ -1,4 +1,4 @@
-import {Component, OnInit, ViewChild} from '@angular/core';
+import {Component, OnInit, ViewChild, AfterViewChecked, ElementRef} from '@angular/core';
 import {MessageService} from '../services/message.service';
 import {Message} from '../models/message.model';
 import {DisplayMessageComponent} from '../display-message/display-message.component';
@@ -12,11 +12,12 @@ import {API_URL} from '../../environments/environment';
   styleUrls: ['./active-chat.component.css'],
 })
 
-export class ActiveChatComponent implements OnInit {
+export class ActiveChatComponent implements OnInit, AfterViewChecked {
 
   @ViewChild(DisplayMessageComponent) child;
+  @ViewChild('scrollMe')  private myScrollContainer: ElementRef;
 
-  private messagesUrl = API_URL + '/messages';
+  private messageUrl = API_URL + '/messages';
   chatMessages: Message[] = [];
 
   mesgId: number;
@@ -39,5 +40,16 @@ export class ActiveChatComponent implements OnInit {
     this.messageService.getAllMessages();
     this.messageService.currentMessage.subscribe(message => this.display(message));
     this.messageService.activeChatListener();
+    this.scrollToBottom();
+  }
+
+  ngAfterViewChecked() {
+    this.scrollToBottom();
+  }
+
+  scrollToBottom(): void {
+    try {
+      this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
+    } catch (err) { }
   }
 }

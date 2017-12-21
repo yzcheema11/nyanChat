@@ -1,8 +1,10 @@
 Placeholder github logo
+<div #scrollMe style="overflow: scroll; height: 100%">
 <i class="fa fa-github" aria-hidden="true"></i>
 
-<div *ngFor="let message of chatMessages" id="chatArea" >
+<div *ngFor="let message of chatMessages" id="chatArea">
   <app-display-message [incomingMessage]="message" [id]="message.messageId" (del)="onDelete($event)"></app-display-message>
 
   <div id="bottom"></div>
+</div>
 </div>
