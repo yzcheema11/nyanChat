@@ -1,7 +1,7 @@
 import {async, ComponentFixture, inject, TestBed} from '@angular/core/testing';
 
 import {ActiveChatComponent} from './active-chat.component';
-import {MessageComponent} from '../message/message.component';
+import {DisplayMessageComponent} from '../display-message/display-message.component';
 import {MessageService} from '../services/message.service';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {Message} from '../models/message.model';
@@ -13,7 +13,7 @@ describe('ActiveChatComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ActiveChatComponent, MessageComponent],
+      declarations: [ActiveChatComponent, DisplayMessageComponent],
       providers: [MessageService],
       imports: [FormsModule, ReactiveFormsModule],
     })
