@@ -10,7 +10,7 @@ declare let EventSource: any;
 @Injectable()
 export class MessageService {
 
-  messages: Message [] = [];
+  // messages: Message [] = [];
   private messagesUrl = API_URL + '/messages';
 
   httpOptions = {headers: new HttpHeaders({'Content-Type': 'application/json'})};
@@ -28,7 +28,7 @@ export class MessageService {
 
   postMessage(message: Message): MessageService {
 
-    this.messages.push(message);
+    // this.messages.push(message);
     this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
     return this;
   }
@@ -37,15 +37,14 @@ export class MessageService {
     const getMessages = this.http.get<Message[]>(this.messagesUrl);
     const tempMessages: Message[] = [];
     getMessages.subscribe(next => {
-      for (const x in next) {
-        const messageHolder: Message = new Message(next[x]);
+      for (const x of next) {
+        const messageHolder: Message = new Message(x);
         tempMessages.push(messageHolder);
-        console.log(messageHolder);
         this.messageSource.next(messageHolder);
       }
     });
-    this.messages = tempMessages;
-    return this.messages;
+    // this.messages = tempMessages;
+    return tempMessages;
   }
 
   getMessageById(id: number): Message {
@@ -67,7 +66,7 @@ export class MessageService {
 
 
   deleteMessageById(id: number): MessageService {
-    this.messages = this.messages.filter(message => message.messageId !== id);
+    // this.messages = this.messages.filter(message => message.messageId !== id);
     return this;
   }
 
