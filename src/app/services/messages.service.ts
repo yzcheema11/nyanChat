@@ -48,7 +48,7 @@ export class MessagesService {
   }
 
   getMessageById(id: number): Message {
-    const getMessage = this.http.get<Message>(this.messagesUrl + '/{{messageId}}');
+    const getMessage = this.http.get<Message>(this.messagesUrl + '/' + id);
     let returnMessage: Message;
     // getMessages.subscribe(next => {
     //   const tempMessages: Message[] = [];
@@ -68,9 +68,11 @@ export class MessagesService {
     return this.messages.filter(message => message.userName === userName).pop();
   }
 
-  deleteMessageById(id: number): MessagesService {
-    this.messages = this.messages.filter(message => message.messageId !== id);
-    return this;
+  deleteMessageById(id: number): boolean {
+    let returnMe: boolean = null;
+    this.http.delete(this.messagesUrl + '/' + id, {observe: 'response', responseType: 'text'})
+      .subscribe(num => returnMe = (JSON.stringify(num.status) == '204'));
+    return returnMe;
   }
 
   updateMessageById(id: number, values: Object = {}): Message {
