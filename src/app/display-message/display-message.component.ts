@@ -22,15 +22,15 @@ export class DisplayMessageComponent implements OnInit {
 
   delete() {
 
-    this.updateMsg.emit({messageId: this.id, content: this.newMsg});
+    this.updateMsg.emit({messageId: this.id, content: this.newMsg, flag: 'D'});
     this.messageService.deleteMessageById(this.id);
   }
 
   editMsg() {
     if (this.newMsg.length > 0) {
       this.messageService.updateMessageById(this.id, {content: this.newMsg});
-      this.updateMsg.emit({messageId: this.id, content: this.newMsg});
-
+      this.updateMsg.emit({messageId: this.id, content: this.newMsg, flag: 'E'});
+      this.newMsg = '';
     }
   }
 
