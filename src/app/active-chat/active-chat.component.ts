@@ -30,10 +30,10 @@ export class ActiveChatComponent implements OnInit, AfterViewChecked {
 
   onUpdate(messageUpdate: {}) {
     console.log(messageUpdate['messageId']);
-    if (messageUpdate['content'] == undefined || messageUpdate['content'].length == 0) {
+    if (messageUpdate['flag'] == 'D') {
       this.chatMessages = this.chatMessages.filter(message => message.messageId !== messageUpdate['messageId']);
     }
-    else {
+    else if (messageUpdate['flag'] == 'E' ) {
       this.chatMessages.find(msg => msg.messageId == messageUpdate['messageId']).content = messageUpdate['content'];
     }
   }
