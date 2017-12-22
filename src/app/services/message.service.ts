@@ -3,6 +3,7 @@ import {Message} from '../models/message.model';
 import {BehaviorSubject} from 'rxjs/BehaviorSubject';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {API_URL} from '../../environments/environment';
+import {promise} from 'selenium-webdriver';
 
 
 declare let EventSource: any;
@@ -26,14 +27,15 @@ export class MessageService {
   constructor(private http: HttpClient) {
   }
 
-  postMessage(message: Message): MessageService {
+  postMessage(message: Message) {
 
-    // this.messages.push(message);
-    this.http.post(this.messagesUrl, message, this.httpOptions).toPromise().catch(reason => console.log(reason.toString()));
-    return this;
+    this.http.post(this.messagesUrl, message, this.httpOptions).toPromise()
+      .then(() => console.log('PSOT Sent'))
+      .catch(() => console.log('POST failed'));
   }
 
   getAllMessages(): Message [] {
+    console.log('getting all');
     const getMessages = this.http.get<Message[]>(this.messagesUrl);
     const tempMessages: Message[] = [];
     getMessages.subscribe(next => {
@@ -43,39 +45,32 @@ export class MessageService {
         this.messageSource.next(messageHolder);
       }
     });
-    // this.messages = tempMessages;
     return tempMessages;
   }
 
   getMessageById(id: number): Message {
-    const getMessage = this.http.get<Message>(this.messagesUrl + '/{{messageId}}');
-    let returnMessage: Message;
-    // getMessages.subscribe(next => {
-    //   const tempMessages: Message[] = [];
-    //   for (const x in next) {
-    //     tempMessages.push(new Message(next[x]));
-    //     console.log(next[x]);
-    //   }
-    //   this.messages = tempMessages;
-    // });
-    getMessage.subscribe(next => {
-      returnMessage = new Message(next);
-    });
+    const returnMessage: Message = new Message;
+    console.log(id);
+    this.http.get<Message>(this.messagesUrl + '/' + id).subscribe(msg => Object.assign(returnMessage, msg));
     return returnMessage;
   }
 
-
-  deleteMessageById(id: number): MessageService {
-    // this.messages = this.messages.filter(message => message.messageId !== id);
-    return this;
+  temp(msg) {
+    console.log(msg);
   }
 
-  updateMessageById(id: number, values: Object = {}): Message {
-    const message = this.getMessageById(id);
-    if (!message) {
-      return null;
-    }
+  deleteMessageById(id: number) {
+    this.http.delete(this.messagesUrl + '/' + id).toPromise()
+      .then(() => console.log('deleted'))
+      .catch(() => console.log('failed to delete'));
+  }
+
+  updateMessageById(id: number, values: Object = {}) {
+    const message: Message = this.getMessageById(id);
     Object.assign(message, values);
+    this.http.put(this.messagesUrl + '/' + id, message).toPromise()
+      .then(() => console.log('updated'))
+      .catch(() => console.log('failed to update'));
     return message;
   }
 
