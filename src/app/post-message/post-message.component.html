@@ -5,6 +5,7 @@
   </div>
   <div class="col-9">
     <input id="str" class="form-control" placeholder="Type message here" [(ngModel)]="str" (keyup.enter)="logMsg()">
+    <input id="name" class="form-control" placeholder="Enter userId here" [(ngModel)]="userId">
   </div>
   <div class="col-2">
     <input class="btn btn-primary" type="submit" value="Send" (click)="logMsg()">

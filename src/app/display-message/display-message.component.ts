@@ -10,7 +10,7 @@ import {Message} from '../models/message.model';
 })
 export class DisplayMessageComponent implements OnInit {
 
-  @Output() del: EventEmitter<number> = new EventEmitter();
+  @Output() updateMsg: EventEmitter<Object> = new EventEmitter();
 
   @Input() id: number;
 
@@ -18,22 +18,19 @@ export class DisplayMessageComponent implements OnInit {
 
   @Input() incomingMessage: Message;
 
-  collapsed: boolean = false;
+  collapsed = false;
 
   delete() {
 
-    this.del.emit(this.id);
+    this.updateMsg.emit({messageId: this.id, content: this.newMsg});
     this.messageService.deleteMessageById(this.id);
-    console.log(this.messageService.getMessageById(this.id));
-    for (const m in this.messageService.getAllMessages()) {
-      console.log(this.messageService.getAllMessages()[m] + ' all msgs');
-    }
   }
 
   editMsg() {
-    this.messageService.updateMessageById(this.id, {content: this.newMsg});
-    for (const m in this.messageService.getAllMessages()) {
-      console.log(this.messageService.getAllMessages()[m] + ' all msgs');
+    if (this.newMsg.length > 0) {
+      this.messageService.updateMessageById(this.id, {content: this.newMsg});
+      this.updateMsg.emit({messageId: this.id, content: this.newMsg});
+
     }
   }
 

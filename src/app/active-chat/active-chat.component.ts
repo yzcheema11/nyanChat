@@ -15,7 +15,7 @@ import {API_URL} from '../../environments/environment';
 export class ActiveChatComponent implements OnInit, AfterViewChecked {
 
   @ViewChild(DisplayMessageComponent) child;
-  @ViewChild('scrollMe')  private myScrollContainer: ElementRef;
+  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
 
   private messageUrl = API_URL + '/messages';
   chatMessages: Message[] = [];
@@ -28,9 +28,14 @@ export class ActiveChatComponent implements OnInit, AfterViewChecked {
     this.chatMessages.push(message);
   }
 
-  onDelete(id: number) {
-    console.log(id);
-    this.chatMessages = this.chatMessages.filter(message => message.messageId !== id);
+  onUpdate(messageUpdate: {}) {
+    console.log(messageUpdate['messageId']);
+    if (messageUpdate['content'] == undefined){
+      this.chatMessages = this.chatMessages.filter(message => message.messageId !== messageUpdate['messageId']);
+    }
+    else {
+      this.chatMessages.find(msg => msg.messageId == messageUpdate['messageId']).content = messageUpdate['content'];
+    }
   }
 
   constructor(private messageService: MessageService, private http: HttpClient) {
@@ -50,6 +55,7 @@ export class ActiveChatComponent implements OnInit, AfterViewChecked {
   scrollToBottom(): void {
     try {
       this.myScrollContainer.nativeElement.scrollTop = this.myScrollContainer.nativeElement.scrollHeight;
-    } catch (err) { }
+    } catch (err) {
+    }
   }
 }
